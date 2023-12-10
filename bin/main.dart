@@ -9,4 +9,13 @@ void main() {
   if (!choice) {
     exit(0);
   }
+
+  List<Option> buildFormatOptions() {
+    return [
+      Option('Convert to jpeg', 'jpeg'),
+      Option('Convert to png', 'png'),
+    ];
+  }
+
+  prompter.askMultiple('Select format:', buildFormatOptions());
 }
