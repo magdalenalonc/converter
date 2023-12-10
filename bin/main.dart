@@ -17,5 +17,16 @@ void main() {
     ];
   }
 
-  prompter.askMultiple('Select format:', buildFormatOptions());
+  List<Option> buildFileOptions() {
+    return Directory.current.listSync().where((entity) {
+      return FileSystemEntity.isFileSync(entity.path) &&
+          entity.path.contains(RegExp(r'\.(png|jpg|jpeg)'));
+    }).map((entity) {
+      final filename = entity.path.split(Platform.pathSeparator).last;
+      return Option(filename, entity);
+    }).toList();
+  }
+
+  final format = prompter.askMultiple('Select format:', buildFormatOptions());
+  prompter.askMultiple('Select an image to convert', buildFileOptions());
 }
