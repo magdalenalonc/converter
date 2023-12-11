@@ -33,4 +33,11 @@ void main() {
       prompter.askMultiple('Select an image to convert', buildFileOptions());
 
   final newPath = convertImage(selectedFile, format);
+
+  final shouldOpen = prompter.askBinary('Open the image?');
+
+  if (shouldOpen) {
+    // for Windows 'explorer', for MacOs 'open', for Linux 'xdg-open'
+    Process.run('explorer', [newPath]);
+  }
 }
