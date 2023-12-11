@@ -7,3 +7,4 @@ environment:
 
 dependencies:
   prompter_ml_2137: ^0.0.1
+  image: ^4.1.3
